@@ -1,0 +1,14 @@
+/cache/*
+/compiled/*
+/databases/*
+/errors/*
+/sessions/*
+/uploads/*
+.DS_Store
+.~lock.*.csv#
+*.log
+*.pyc
+*.~*~
+.directory
+.pythonhistory
+.idea

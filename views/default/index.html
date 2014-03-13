@@ -1,0 +1,32 @@
+{{extend 'layout.html'}}
+
+{{if 'message' in globals():}}
+<div class="jumbotron">
+  <h2 style="text-align:center">{{=message}}</h2>
+  <p>The web deployment tool allows you to deploy and configure instances of Sahana Eden remotely while allowing you the flexibility to customize your build. It also allows you to configure previously deployed instances of Sahana Eden.</p>
+  <div style="text-align: center">
+    <div class="btn-group">
+      <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown" type="button">Click to deploy a new instance</button>
+      <button style="margin-right: 5px" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" type="button">
+        <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu">
+        <li><a href="{{=URL('default', '/amazon') }}">Amazon's EC2</a></li>
+        <li><a href="{{=URL('default', '/linux') }}">Linux Server</a></li>
+      </ul>
+    </button>
+    <button class="btn btn-default">Click to configure an instance</button>
+  </div>
+</div>
+{{pass}}
+
+{{block right_sidebar}}
+{{=A(T("Administrative Interface"), _href=URL('admin','default','index'), _class='btn',
+     _style='margin-top: 1em;')}}
+<h6>{{=T("Don't know what to do?")}}</h6>
+<ul>
+  <li>{{=A(T("Online examples"), _href=URL('examples','default','index'))}}</li>
+  <li><a href="http://web2py.com">web2py.com</a></li>
+  <li><a href="http://web2py.com/book">{{=T('Documentation')}}</a></li>
+</ul>
+{{end}}
