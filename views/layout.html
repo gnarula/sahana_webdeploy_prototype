@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="no-js" lang="{{=T.accepted_language or 'en'}}">
 <head>
-<title>{{=response.title or request.application}}</title>
+<title>{{=response.title or 'Sahana Web Deployment Tool'}}</title>
   <meta charset="utf-8" />
 
   <!-- http://dev.w3.org/html5/markup/meta.name.html -->
@@ -34,7 +34,7 @@
   # using sidebars need to know what sidebar you want to use
   left_sidebar_enabled = globals().get('left_sidebar_enabled',False)
   right_sidebar_enabled = globals().get('right_sidebar_enabled',False)
-  middle_columns = {0:'span12',1:'span9',2:'span6'}[
+  middle_columns = {0:'col-lg-12',1:'col-lg-9',2:'col-lg-9'}[
     (left_sidebar_enabled and 1 or 0)+(right_sidebar_enabled and 1 or 0)]
   }}
 
@@ -47,10 +47,9 @@
 
 <body>
   <!-- Navbar ================================================== -->
-  <div class="navbar navbar-inverse">
-    <div class="flash">{{=response.flash or ''}}</div>
+  <div class="navbar navbar-default">
     <div class="navbar-header">
-      <a class="navbar-brand" href="#">{{=response.logo or ''}}</a>
+      <a class="navbar-brand" href="{{=URL('/index')}}">{{=response.logo or 'Sahana Web Deployment Tool'}}</a>
     </div>
     <div class="navbar-inner">
       <div class="container">
@@ -71,10 +70,16 @@
     </div>
   </div><!--/top navbar -->
 
+
   <div class="container">
+    {{if response.flash:}}
+    <div class="alert alert-info alert-dismissable">
+      {{=response.flash}}
+    </div>
+    {{pass}}
     <section id="main" class="main row">
         {{if left_sidebar_enabled:}}
-        <div class="span3 left-sidebar">
+        <div class="col-lg-3 left-sidebar">
             {{block left_sidebar}}
             <h3>Left Sidebar</h3>
             <p></p>
@@ -89,7 +94,7 @@
         </div>
 
         {{if right_sidebar_enabled:}}
-        <div class="span3">
+        <div class="col-lg-3">
             {{block right_sidebar}}
             <h3>Right Sidebar</h3>
             <p></p>
@@ -100,7 +105,7 @@
 
     <!-- Footer ================================================== -->
     <div class="row">
-        <footer class="footer span12" id="footer">
+        <footer class="footer col-lg-12" id="footer">
             <div class="footer-content">
                 {{block footer}} <!-- this is default footer -->
                 <div class="copyright pull-left">{{=T('Copyright')}} &#169; {{=request.now.year}}</div>

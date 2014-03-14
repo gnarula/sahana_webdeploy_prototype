@@ -1,0 +1,74 @@
+{{extend 'layout.html'}}
+
+<div class="well">
+  <form action="#" enctype="multipart/form-data" method="post" class="form-horizontal">
+    <legend>Amazon Deployment</legend>
+    <div class="form-group">
+      <label class="col-lg-2 control-label" for="name">Deployment Name</label>
+      <div class="col-lg-10">
+        <input type="text" class="form-control" id="name" name="name" placeholder="Deployment Name">
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-lg-2 control-label" for="">Type</label>
+      <div class="col-lg-10">
+        <input type="text" class="form-control" id="type" name="type" value="amazon" readonly>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-lg-2 control-label">Tier</label>
+      <div class="col-lg-10">
+        <div class="radio">
+          <label><input type="radio" value="free" id="optionTier" name="tier"> Free</label>
+        </div>
+        <div class="radio">
+          <label><input type="radio" value="paid" id="optionTier" name="tier"> Paid</label>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-lg-2 control-label">Web Server</label>
+      <div class="col-lg-10">
+        <div class="radio">
+          <label><input type="radio" value="apache" id="optionWS" name="web_server"> Apache/mod_wsgi</label>
+        </div>
+        <div class="radio">
+          <label><input type="radio" value="cherokee" id="optionWS" name="web_server"> Cherokee/uWSGI</label>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-lg-2 control-label">Database</label>
+      <div class="col-lg-10">
+        <div class="radio">
+          <label><input type="radio" value="mysql" id="optionDB" name="database"> MySQL</label>
+        </div>
+        <div class="radio">
+          <label><input type="radio" value="postgresql" id="optionDB" name="database"> PostgreSQL</label>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-lg-2 control-label" for="">Key:</label>
+      <div class="col-lg-10">
+        <input type="file" id="key" name="key">
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-lg-10 col-lg-offset-2">
+        <button class="btn btn-primary" type="submit">Deploy</button>
+      </div>
+    </div>
+  </form>
+</div>
+
+{{block right_sidebar}}
+{{=A(T("Administrative Interface"), _href=URL('admin','default','index'), _class='btn',
+     _style='margin-top: 1em;')}}
+<h6>{{=T("Don't know what to do?")}}</h6>
+<ul>
+  <li>{{=A(T("Online examples"), _href=URL('examples','default','index'))}}</li>
+  <li><a href="http://web2py.com">web2py.com</a></li>
+  <li><a href="http://web2py.com/book">{{=T('Documentation')}}</a></li>
+</ul>
+{{end}}

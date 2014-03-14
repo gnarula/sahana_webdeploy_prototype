@@ -1,0 +1,81 @@
+{{extend 'layout.html'}}
+
+<legend>View Deployment #{{=deployment.id}}</legend>
+<div class="col-lg-6">
+  <div class="well">
+    <table class="table">
+      <tr>
+        <th>Deployment Name:</th>
+        <td>{{=deployment.name}}</td>
+      </tr>
+      <tr>
+        <th>Deployment Type:</th>
+        <td>{{=deployment.type.title()}}</td>
+      </tr>
+      {{if deployment.tier:}}
+      <tr>
+        <th>Deployment Tier:</th>
+        <td>{{=deployment.tier.title()}}</td>
+      </tr>
+      {{pass}}
+      <tr>
+        <th>Database:</th>
+        <td>{{=deployment.database.title()}}</td>
+      </tr>
+      <tr>
+        <th>Web Server:</th>
+        <td>{{=deployment.web_server.title()}}</td>
+      </tr>
+      {{if deployment.key:}}
+      <tr>
+        <th>Secret Key:</th>
+        <td>Stored</td>
+      </tr>
+      {{pass}}
+
+    </table>
+  </div>
+</div>
+
+<div class="col-lg-6">
+  <div class="well">
+    <legend>Status</legend>
+    <p><span class="glyphicon glyphicon-ok"></span> Deployed Successfully</p>
+    <a href="#" data-target="#logs" data-toggle="modal">Show Log</a>
+    <div id="logs" class="modal fade">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">Deployment Log</h4>
+          </div>
+          <div class="modal-body">
+            <code>Log Content Here</code>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+  </div>
+</div>
+
+<div style="margin-bottom: 10px;" class="col-lg-12">
+  <legend>Configuration</legend>
+  <ul class="nav nav-tabs">
+    <li class="active"><a data-toggle="tab" href="#general">General</a></li>
+    <li><a data-toggle="tab" href="#module1">Module 1</a></li>
+    <li><a data-toggle="tab" href="#module2">Module 2</a></li>
+  </ul>
+  <div class="tab-content">
+    <div id="general" class="tab-pane fade active in">
+      <p>General Config here...</p>
+    </div>
+    <div id="module1" class="tab-pane fade">
+      <p>Module 1 Config here...</p>
+    </div>
+    <div id="module2" class="tab-pane fade">
+      <p>Module 2 Config here...</p>
+    </div>
+  </div>
+</div>
