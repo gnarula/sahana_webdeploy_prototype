@@ -21,3 +21,13 @@ def linux():
 def deployment():
     deployment = db.deployment(request.args(0)) or redirect(URL('error'))
     return dict(deployment=deployment)
+
+def list_deployments():
+    if len(request.args):
+        page = int(request.args[0])
+    else:
+        page = 0
+    items_per_page = 10
+    limitby = (page * items_per_page, (page + 1) * items_per_page + 1)
+    deployments = db().select(db.deployment.ALL, limitby=limitby)
+    return dict(deployments=deployments, page=page, items_per_page=items_per_page)
